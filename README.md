@@ -1,42 +1,60 @@
 # Expense Monitor
 
-This project will take monthly statements in pdf format and parse them to extract different transactions and categorize them.
-<br>
-**Note: Only supported for bank statement format for axis bank for now.**
+> Turn your bank-statement PDFs into categorized spending — automatically.
 
-## Proposed categories 
+Expense Monitor reads a monthly bank statement in PDF form, extracts every transaction, and sorts it into clear categories — then reports where your money actually went. No manual data entry, no spreadsheets.
 
-There are two types of categories
+> **Note:** currently supports the **Axis Bank** statement format.
 
-1) **Merchant Payments**
-2) **Person Payments**
-3) **Cash withdrawal**
+## What it does
 
-Merchants payments can be divided into following sub categories based on additional data (will not be included in first version)
+- **Parses** a monthly bank-statement PDF.
+- **Extracts** individual transactions from the statement.
+- **Categorizes** each transaction into one of three groups:
+  - **Merchant payments**
+  - **Person payments**
+  - **Cash withdrawals**
+- **Summarizes** the month with general results:
+  - **Total expense**
+  - **Total savings** — calculated as *money received from a registered payer − total expenses*
 
-1) Food (includes snacks)
-2) Lunch
-3) Dinner
-4) Big purchases (limit will be custom)
-5) Other
+## Roadmap
 
-person payments can me divide into
+- **v1.0** — Parse Axis Bank PDF statements, categorize transactions into the three main categories, and show general results.
+- **v2.0** — Add sub-categories:
+  - *Merchant payments* → Food, Lunch, Dinner, Big purchases (custom limit), Other
+  - *Person payments* → Rent, total debited per person, total credited per person
+- **v3.0** — Pull statements straight from email and auto-generate a monthly bill summary in Notion.
 
-1) Rent
-2) Total debited amount (categorised by person)
-3) Total created amount (categorised by person)
+## Tech stack
 
-Some general results
+- **Java 17**
+- **Maven**
+- **OkHttp** · **Lombok**
 
-1) Total expanse
-2) Total savings (will be calculated by : total money send by registered payer - total expanses)
+## Getting started
 
-Cash category is self-explanatory
+### Prerequisites
+- Java 17+
+- Maven
 
-## Milestones
-* **v1.0**<br>
-create a basic pdf statement parser for axis bank statement and categorize data in three main categories and show general results.<br>
-* **v2.0**<br>
-add support for additional sub categories.<br>
-* gi**v3.0**<br>
-add support for getting statements from email and creating automatic bill summary in notion
+### Build
+
+```bash
+git clone https://github.com/aadeshwagh/expense-monitor.git
+cd expense-monitor
+mvn clean package
+```
+
+### Run
+
+Open the project in your IDE (IntelliJ IDEA recommended) and run the parser's main class, pointing it at an Axis Bank statement PDF.
+
+## Branches
+
+- **`master`** — stable branch.
+- **`features/dev`** — active development.
+
+## Contributing
+
+Issues and pull requests are welcome. Branch off `features/dev` for new work.
